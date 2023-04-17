@@ -7,6 +7,8 @@ import com.example.app.level.roomdata.objecttypes.RoomObject;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.Arrays;
+
 public class Level {
     private int width;
     private int height;
@@ -21,16 +23,14 @@ public class Level {
     }
 
     public void constructLevel() {
-        layout = new Room[width][height];
-        for (int a = 0; a < width; a++) {
-            for (int b = 0; b < height; b++) {
-                //eventually add a file reader.
-                layout[a][b] = new Room(1);
-                for (RoomObject obj : layout[a][b].getObjects()) {
+        layout = LevelTools.readLevelFile(1);
+        for (Room[] r : layout) {
+            for (Room b : r) {
+                for (RoomObject obj : b.getObjects()) {
                     ImageView iv = new ImageView(obj.getSprite());
                     Controller.objectLayer.getChildren().add(iv);
-                    iv.setLayoutX(obj.getX() + (a * AssetsController.tileWidth * layout[a][b].getWidth()));
-                    iv.setLayoutY(obj.getY() + (b * AssetsController.tileHeight * layout[a][b].getHeight()));
+                    iv.setLayoutX(obj.getX() + (Arrays.asList(layout).indexOf(r) * AssetsController.tileWidth * b.getWidth()));
+                    iv.setLayoutY(obj.getY() + (Arrays.asList(r).indexOf(b) * AssetsController.tileHeight * b.getHeight()));
                 }
             }
         }
