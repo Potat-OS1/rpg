@@ -22,7 +22,7 @@ public class Room {
         catch (Exception e) {
             //failed to construct room.
         }
-        System.out.println("Constructed Room");
+        //System.out.println("Constructed Room");
     }
 
     public RoomObject[] getObjects () {
@@ -31,13 +31,5 @@ public class Room {
 
     public Image getRoomImage () {
         return roomImage;
-    }
-
-    public int getWidth () {
-        return roomTiles.length;
-    }
-
-    public int getHeight () {
-        return roomTiles[0].length;
     }
 }

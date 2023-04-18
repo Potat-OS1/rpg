@@ -20,7 +20,7 @@ public class Controller extends Application {
         primaryStage.sizeToScene();
         primaryStage.show();
 
-        Level newLevel = new Level(3, 3);
+        Level newLevel = new Level(1);
         levelLayer.getChildren().add(new ImageView(newLevel.getLevelImage()));
 
     }

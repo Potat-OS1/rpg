@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 
 public class RoomObject {
     protected String type;
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     protected Image sprite;
 
     protected RoomObject(int x, int y) {

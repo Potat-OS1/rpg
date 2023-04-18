@@ -11,28 +11,36 @@ import java.util.Objects;
 
 public class LevelTools {
     public static Image joinImages(Room[][] rooms) {
-        int width = (int) (rooms.length * rooms[0][0].getRoomImage().getWidth());
-        int height = (int) (rooms[0].length * rooms[0][0].getRoomImage().getHeight());
-        int tileWidth = (int) rooms[0][0].getRoomImage().getWidth();
-        int tileHeight = (int) rooms[0][0].getRoomImage().getHeight();
+        int width = 1000;
+        int height = 1000;
+        int currentX;
+        int currentY = 0;
+        int bigHeight;
 
         WritableImage wi = new WritableImage(width, height);
-        for (int a = 0; a < rooms.length; a++) {
-            for (int b = 0; b < rooms[a].length; b++) {
-                int w = (int) rooms[a][b].getRoomImage().getWidth();
-                int h = (int) rooms[a][b].getRoomImage().getHeight();
+        for (Room[] room : rooms) {
+            currentX = 0;
+            bigHeight = 0;
+            for (Room value : room) {
+                int h = (int) value.getRoomImage().getWidth();
+                int w = (int) value.getRoomImage().getHeight();
                 for (int c = 0; c < w; c++) {
                     for (int d = 0; d < h; d++) {
-                        wi.getPixelWriter().setArgb(c + (a*tileWidth), d + (b * tileHeight), rooms[a][b].getRoomImage().getPixelReader().getArgb(c, d));
+                        wi.getPixelWriter().setArgb(c + currentX, d + currentY, value.getRoomImage().getPixelReader().getArgb(d, c));
                     }
                 }
+                if (bigHeight < h) {
+                    bigHeight = h;
+                }
+                currentX = currentX + w;
             }
+            currentY = currentY + bigHeight;
         }
         return wi;
     }
 
     public static Room[][] readLevelFile(int num) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(LevelTools.class.getResourceAsStream("/level/level 1.txt"))));
+        BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(LevelTools.class.getResourceAsStream("/level/level " + num + ".txt"))));
         String line;
         String[] temp;
         ArrayList<ArrayList<Room>> level = new ArrayList<>();
@@ -43,9 +51,10 @@ public class LevelTools {
                     level.add(new ArrayList<>());
                     temp = line.split(", ");
                     for (String s : temp) {
-                        System.out.println(s);
                         switch (s) {
-                            case ("0") -> level.get(a).add(new Room(1));
+                            case ("1") -> level.get(a).add(new Room(1));
+                            case ("2") -> level.get(a).add(new Room(2));
+                            case ("3") -> level.get(a).add(new Room(3));
                         }
                     }
                 }
@@ -58,13 +67,6 @@ public class LevelTools {
             }
             a++;
         }
-        Room[][] levelArray = level.stream().map(u -> u.toArray(new Room[0])).toArray(Room[][]::new);
-        for (Room[] c : levelArray) {
-            for (Room b : c) {
-                System.out.print(c + "  ");
-            }
-            System.out.println();
-        }
-        return levelArray;
+        return level.stream().map(u -> u.toArray(new Room[0])).toArray(Room[][]::new);
     }
 }
