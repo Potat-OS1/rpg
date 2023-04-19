@@ -1,10 +1,11 @@
 plugins {
-  id 'application'
-  id 'org.openjfx.javafxplugin' version '0.0.13'
-  id 'org.beryx.jlink' version '2.26.0'
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.26.0'
 }
 
-def logbackVersion = "1.4.5"
+def logbackVersion = "1.4.6"
 
 repositories {
     mavenCentral()
@@ -12,7 +13,7 @@ repositories {
 
 javafx {
     version = "19.0.2.1"
-    modules = [ 'javafx.controls' ]
+    modules = [ 'javafx.controls', 'javafx.fxml']
 }
 
 application {

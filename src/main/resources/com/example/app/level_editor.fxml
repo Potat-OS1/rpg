@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.leveleditor.LevelEditorController">
+   <children>
+      <HBox prefHeight="600.0" prefWidth="600.0">
+         <children>
+            <StackPane prefHeight="600.0" prefWidth="200.0">
+               <children>
+                  <VBox minHeight="600.0" minWidth="200.0" prefHeight="600.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #7c66ff;" text="Tiles" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <VBox fx:id="tileVbox" prefHeight="180.0" prefWidth="185.0" />
+                           </content>
+                        </ScrollPane>
+                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #7c66ff;" text="Objects" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <VBox fx:id="objectVbox" prefHeight="180.0" prefWidth="185.0" />
+                           </content>
+                        </ScrollPane>
+                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #7c66ff;" text="Entity">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <VBox fx:id="entityVbox" prefHeight="180.0" prefWidth="185.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <StackPane minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #a4a4a4;" />
+         </children>
+      </HBox>
+   </children>
+</Pane>
