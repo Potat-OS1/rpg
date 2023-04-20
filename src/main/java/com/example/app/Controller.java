@@ -2,6 +2,7 @@ package com.example.app;
 
 import com.example.app.level.Level;
 import com.example.app.leveleditor.LevelEditorController;
+import com.example.app.leveleditor.LevelScene;
 import javafx.animation.AnimationTimer;
 import javafx.application.*;
 import javafx.fxml.FXMLLoader;
@@ -81,6 +82,9 @@ public class Controller extends Application {
             }
             if (Event.getCode() == KeyCode.SUBTRACT) {
                 LevelEditorController.getLevel().setMinSize(LevelEditorController.getLevel().getMinWidth() - 10, LevelEditorController.getLevel().getMinHeight() - 10);
+            }
+            if (Event.getCode() == KeyCode.K) {
+                LevelScene.resizeGrid(11, 11);
             }
         });
 

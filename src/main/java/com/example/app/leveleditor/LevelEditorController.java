@@ -21,7 +21,7 @@ public class LevelEditorController {
     private Pane levelScene;
     @FXML
     private HBox sceneDivider;
-    private static Pane r = new Pane();
+    private static StackPane r = new StackPane();
     @FXML
     public void initialize () {
         //something to do with the tiles
@@ -31,9 +31,12 @@ public class LevelEditorController {
                 + "-fx-border-width: 3;\n"
                 + "-fx-border-style: dashed;\n"
         );
+        r.getStyleClass().add("edge-to-edge");
         r.setMinSize(350, 350);
         r.setLayoutX(125);
         r.setLayoutY(125);
+        r.getChildren().add(LevelScene.scene());
+        //r.getChildren().get(0).resize(100, 100);
         sceneDivider.toFront();
         r.toBack();
         levelScene.getChildren().add(r);
@@ -55,12 +58,10 @@ public class LevelEditorController {
 
     public void populateObjectVbox () {
         int b = (int) Math.ceil(AssetsController.containers.length / 4.0);
-        System.out.println(b);
         for (int c = 0; c < b; c++) {
             objectVbox.getChildren().add(makeNewRow(c, "container"));
         }
         b = (int) Math.ceil(AssetsController.lights.length / 4.0);
-        System.out.println(b);
         for (int c = 0; c < b; c++) {
             objectVbox.getChildren().add(makeNewRow(c, "light"));
         }
@@ -82,8 +83,7 @@ public class LevelEditorController {
                 }
                 hbox.getChildren().add(createRegion());
             }
-            catch (Exception e) {
-                System.out.println("fail ");
+            catch (Exception ignored) {
             }
         }
         return hbox;
