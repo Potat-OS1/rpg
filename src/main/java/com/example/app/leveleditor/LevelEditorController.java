@@ -21,16 +21,10 @@ public class LevelEditorController {
     private Pane levelScene;
     @FXML
     private HBox sceneDivider;
-    private static StackPane r = new StackPane();
+    private static Pane r = new Pane();
     @FXML
     public void initialize () {
         //something to do with the tiles
-        r.setBackground(new Background(new BackgroundFill(new Color(0.0, 0.0, 0.0, 0.2), null, null)));
-        r.setStyle(
-                "-fx-border-color: black;\n"
-                + "-fx-border-width: 3;\n"
-                + "-fx-border-style: dashed;\n"
-        );
         r.getStyleClass().add("edge-to-edge");
         r.setMinSize(350, 350);
         r.setLayoutX(125);

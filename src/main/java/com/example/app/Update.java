@@ -17,18 +17,18 @@ public class Update extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        if (now - lastUpdate >= 10_000_000) {
+        if (now - lastUpdate >= 1_000_000) {
             if (north) {
-                LevelEditorController.getLevel().setLayoutY(LevelEditorController.getLevel().getLayoutY() - 2);
+                LevelEditorController.getLevel().setLayoutY(LevelEditorController.getLevel().getLayoutY() - 1);
             }
             if (south) {
-                LevelEditorController.getLevel().setLayoutY(LevelEditorController.getLevel().getLayoutY() + 2);
+                LevelEditorController.getLevel().setLayoutY(LevelEditorController.getLevel().getLayoutY() + 1);
             }
             if (east) {
-                LevelEditorController.getLevel().setLayoutX(LevelEditorController.getLevel().getLayoutX() + 2);
+                LevelEditorController.getLevel().setLayoutX(LevelEditorController.getLevel().getLayoutX() + 1);
             }
             if (west) {
-                LevelEditorController.getLevel().setLayoutX(LevelEditorController.getLevel().getLayoutX() - 2);
+                LevelEditorController.getLevel().setLayoutX(LevelEditorController.getLevel().getLayoutX() - 1);
             }
         }
     }

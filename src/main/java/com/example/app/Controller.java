@@ -78,13 +78,14 @@ public class Controller extends Application {
                 Update.east = true;
             }
             if (Event.getCode() == KeyCode.ADD) {
-                LevelEditorController.getLevel().setMinSize(LevelEditorController.getLevel().getMinWidth() + 10, LevelEditorController.getLevel().getMinHeight() + 10);
+                LevelScene.scaleGrid(10);
+                System.out.println("oi");
             }
             if (Event.getCode() == KeyCode.SUBTRACT) {
-                LevelEditorController.getLevel().setMinSize(LevelEditorController.getLevel().getMinWidth() - 10, LevelEditorController.getLevel().getMinHeight() - 10);
+                LevelScene.scaleGrid(-10);
             }
             if (Event.getCode() == KeyCode.K) {
-                LevelScene.resizeGrid(11, 11);
+                LevelScene.resizeGridPane(LevelScene.gp.getRowCount() + 1);
             }
         });
 
