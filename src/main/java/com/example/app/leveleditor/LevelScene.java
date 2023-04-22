@@ -1,7 +1,6 @@
 package com.example.app.leveleditor;
 
 import com.example.app.AssetsController;
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -12,12 +11,14 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class LevelScene {
     public static GridPane gp = new GridPane();
     static ArrayList<Rectangle> iv = new ArrayList<>();
     static StackPane[][] temp;
+    public static int[][] imageList;
+    private static int[][] tempImageList;
+
     public static GridPane scene() {
         gp.setMinSize(350, 350);
         gp.setStyle(
@@ -27,28 +28,55 @@ public class LevelScene {
         );
         gp.setBackground(new Background(new BackgroundFill(new Color(0.0, 0.0, 0.0, 0.2), null, null)));
         setConstraints(10);
+        imageList = new int[10][10];
         populateGridPane();
         return gp;
     }
 
     public static void resizeGridPane(int num) {
-        storeValues();
+        storePaneValues();
         gp.getChildren().clear();
         gp.setMinSize(350, 350);
         iv.clear();
         gp.getRowConstraints().remove(0, gp.getRowCount());
         gp.getColumnConstraints().remove(0, gp.getColumnCount());
         setConstraints(num);
+        storeImageValues();
         populateGridPaneWithValues();
     }
 
-    private static void storeValues () {
+    private static void storePaneValues() {
         temp = new StackPane[gp.getRowCount()][gp.getColumnCount()];
+        tempImageList = new int[gp.getRowCount()][gp.getColumnCount()];
         for (int a = 0; a < gp.getColumnCount(); a++) {
             for (int b = 0; b < gp.getRowCount(); b++) {
                 temp[a][b] = (StackPane) getNodeByRowColumnIndex(b, a, gp);
             }
         }
+    }
+
+    private static void storeImageValues () {
+        tempImageList = new int[gp.getRowCount()][gp.getColumnCount()];
+        for (int a = 0; a < gp.getColumnCount(); a++) {
+            for (int b = 0; b < gp.getRowCount(); b++) {
+                try {
+                    tempImageList[a][b] = imageList[a][b];
+                }
+                catch (Exception ignored) {
+
+                }
+            }
+        }
+        imageList = tempImageList;
+
+        System.out.println("printing list");
+        for (int a = 0; a < tempImageList.length; a++) {
+            for (int b = 0; b < tempImageList[a].length; b++) {
+                System.out.print(tempImageList[b][a] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     public static Node getNodeByRowColumnIndex (final int row, final int column, GridPane gridPane) {
@@ -58,6 +86,13 @@ public class LevelScene {
             }
         }
         return new StackPane();
+    }
+
+    private static void turnCellToBrush (Rectangle r, int x, int y) {
+        r.setOnMouseClicked(Event-> {
+            r.setFill(new ImagePattern(LevelEditorController.getBrushImage()));
+            imageList[x][y] = LevelEditorController.brushIndex;
+        });
     }
 
     private static void populateGridPaneWithValues () {
@@ -74,9 +109,11 @@ public class LevelScene {
                 catch (Exception ex) {
                     p = new StackPane();
                     r = new Rectangle(gp.getMinWidth()/gp.getRowCount(), gp.getMinWidth()/gp.getColumnCount());
-                    //p.setBorder(new Border(new BorderStroke(new Color(0.2, 0.2, 0.2, 1.0), BorderStrokeStyle.DASHED, CornerRadii.EMPTY, new BorderWidths(2))));
+                    p.setBorder(new Border(new BorderStroke(new Color(0.2, 0.2, 0.2, 1.0), BorderStrokeStyle.DASHED, CornerRadii.EMPTY, new BorderWidths(1))));
                     p.getChildren().add(r);
+                    r.setFill(new ImagePattern(new Image(AssetsController.class.getResourceAsStream("/tiledata/materials/redmat.png"))));
                     r.setStrokeWidth(3);
+                    turnCellToBrush(r, d, e);
                 }
                 iv.add(r);
                 gp.add(p, d, e);
@@ -88,17 +125,12 @@ public class LevelScene {
         for (int d = 0; d < gp.getRowCount(); d++) {
             for (int e = 0; e < gp.getColumnCount(); e++) {
                 Rectangle r = new Rectangle(gp.getMinWidth()/gp.getRowCount(), gp.getMinWidth()/gp.getColumnCount());
-                if (ThreadLocalRandom.current().nextInt(0, 2) == 0) {
-                    r.setFill(new ImagePattern(new Image(AssetsController.class.getResourceAsStream("/tiledata/materials/redmat.png"))));
-                }
-                else {
-                    r.setFill(new ImagePattern(new Image(AssetsController.class.getResourceAsStream("/tiledata/materials/blackmat.png"))));
-
-                }
+                r.setFill(new ImagePattern(new Image(AssetsController.class.getResourceAsStream("/tiledata/materials/redmat.png"))));
                 StackPane p = new StackPane();
-                //p.setBorder(new Border(new BorderStroke(new Color(0.2, 0.2, 0.2, 1.0), BorderStrokeStyle.DASHED, CornerRadii.EMPTY, new BorderWidths(2))));
+                p.setBorder(new Border(new BorderStroke(new Color(0.2, 0.2, 0.2, 1.0), BorderStrokeStyle.DASHED, CornerRadii.EMPTY, new BorderWidths(1))));
                 p.getChildren().add(r);
                 r.setStrokeWidth(3);
+                turnCellToBrush(r, d, e);
                 iv.add(r);
                 gp.add(p, d, e);
             }

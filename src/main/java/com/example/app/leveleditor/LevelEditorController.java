@@ -6,11 +6,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class LevelEditorController {
+    private static Image brushImage;
+    public static int brushIndex;
     @FXML
     private VBox tileVbox;
     @FXML
@@ -21,6 +24,8 @@ public class LevelEditorController {
     private Pane levelScene;
     @FXML
     private HBox sceneDivider;
+    @FXML
+    private StackPane saveAs;
     private static Pane r = new Pane();
     @FXML
     public void initialize () {
@@ -34,12 +39,47 @@ public class LevelEditorController {
         sceneDivider.toFront();
         r.toBack();
         levelScene.getChildren().add(r);
-        levelBehavior(r);
+        //levelBehavior(r);
         populateTileVbox();
         populateObjectVbox();
-        //something to do with the objects
+        saveLevel();
         //something to do with entities
         //when i get around to adding it to the editor, something to do with the rooms
+    }
+
+    public void saveLevel() {
+        saveAs.setOnMouseClicked(Event -> {
+            PrintWriter pw;
+            try {
+                pw = new PrintWriter("room.txt");
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+            for (int a = 0; a < LevelScene.imageList.length; a++) {
+                for (int b = 0; b < LevelScene.imageList[a].length; b++) {
+                    switch (LevelScene.imageList[b][a]) {
+                        case (2) -> writeTo(b, pw, 1);
+                        case (1) -> writeTo(b, pw, 0);
+                        case (0) -> writeTo(b, pw, 2);
+                    }
+                }
+                pw.println();
+            }
+            pw.close();
+        });
+    }
+    public void writeTo (int b, PrintWriter pw, int entry) {
+        if (b+1 == LevelScene.imageList.length) {
+            pw.print(entry);
+        }
+        else {
+            pw.print(entry + ", ");
+        }
+    }
+
+    public static Image getBrushImage () {
+        return brushImage;
     }
 
     public void populateTileVbox () {
@@ -92,6 +132,10 @@ public class LevelEditorController {
 
         Rectangle r = new Rectangle(30, 30);
         r.setFill(new ImagePattern(im));
+        r.setOnMouseClicked(Event->{
+            brushImage = im;
+            brushIndex = a;
+        });
 
         Label l = new Label(String.valueOf(a));
         vbox.getChildren().addAll(l, r);
@@ -109,10 +153,10 @@ public class LevelEditorController {
         return r;
     }
 
-    public static void levelBehavior (Pane p) {
-        p.setOnMouseClicked(Event->{
-            System.out.println(Event.getX());
-            System.out.println(Event.getY());
-        });
-    }
+//    public static void levelBehavior (Pane p) {
+//        p.setOnMouseClicked(Event->{
+//            System.out.println(Event.getX());
+//            System.out.println(Event.getY());
+//        });
+//    }
 }

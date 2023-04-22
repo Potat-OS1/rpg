@@ -40,7 +40,7 @@ public class Level {
             }
             currentY = currentY + bigHeight;
         }
-        //System.out.println("Constructed Level");
+        System.out.println("Constructed Level");
     }
 
     public Image getLevelImage () {

@@ -1,7 +1,6 @@
 package com.example.app;
 
 import com.example.app.level.Level;
-import com.example.app.leveleditor.LevelEditorController;
 import com.example.app.leveleditor.LevelScene;
 import javafx.animation.AnimationTimer;
 import javafx.application.*;
@@ -17,21 +16,19 @@ import java.io.IOException;
 public class Controller extends Application {
     public static BorderPane objectLayer = new BorderPane();
     boolean enterLevelEditor = false;
-    int startingSize[] = new int[2];
+    int[] startingSize = new int[2];
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Better Final");
         Parameters params = getParameters();
+        startingSize[0] = 600;
+        startingSize[1] = 600;
         for (String s : params.getRaw()) {
             if (s.equals("Level_Editor")) {
                 enterLevelEditor = true;
                 startingSize[0] = 800;
-                startingSize[1] = 600;
-            }
-            else {
-                startingSize[0] = 600;
-                startingSize[1] = 600;
+                break;
             }
         }
         Pane congregateLayer = new Pane();
@@ -44,7 +41,6 @@ public class Controller extends Application {
             FXMLLoader loader = new FXMLLoader(Controller.class.getResource("level_editor.fxml"));
             congregateLayer.getChildren().add(loader.load());
             setBehavior(scene);
-
         }
         else {
             BorderPane levelLayer = new BorderPane();
@@ -79,7 +75,6 @@ public class Controller extends Application {
             }
             if (Event.getCode() == KeyCode.ADD) {
                 LevelScene.scaleGrid(10);
-                System.out.println("oi");
             }
             if (Event.getCode() == KeyCode.SUBTRACT) {
                 LevelScene.scaleGrid(-10);

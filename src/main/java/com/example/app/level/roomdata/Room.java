@@ -20,9 +20,10 @@ public class Room {
             objects = RoomTools.readObjectFile(roomNumber);
         }
         catch (Exception e) {
+            System.out.println("Failed to Construct Tile");
             //failed to construct room.
         }
-        //System.out.println("Constructed Room");
+        System.out.println("Constructed Room");
     }
 
     public RoomObject[] getObjects () {

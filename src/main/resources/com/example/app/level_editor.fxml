@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #717171;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.leveleditor.LevelEditorController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #717171;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.leveleditor.LevelEditorController">
    <children>
       <HBox fx:id="sceneDivider" prefHeight="600.0" prefWidth="200.0">
          <children>
@@ -24,7 +24,7 @@
                         </Label>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7c66ff;" styleClass="edge-to-edge" vbarPolicy="ALWAYS">
                            <content>
-                              <VBox fx:id="tileVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="186.0" style="-fx-background-color: #515151;" />
+                              <VBox fx:id="tileVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="186.0" style="-fx-background-color: #515151;" />
                            </content>
                         </ScrollPane>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #7c66ff;" text="Objects" textAlignment="CENTER">
@@ -34,7 +34,7 @@
                         </Label>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="edge-to-edge" vbarPolicy="ALWAYS">
                            <content>
-                              <VBox fx:id="objectVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="186.0" style="-fx-background-color: #515151;" styleClass="edge-to-edge" />
+                              <VBox fx:id="objectVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="186.0" style="-fx-background-color: #515151;" styleClass="edge-to-edge" />
                            </content>
                         </ScrollPane>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #7c66ff;" text="Entity">
@@ -44,7 +44,7 @@
                         </Label>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="edge-to-edge" vbarPolicy="ALWAYS">
                            <content>
-                              <VBox fx:id="entityVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="186.0" style="-fx-background-color: #515151;" styleClass="edge-to-edge" />
+                              <VBox fx:id="entityVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="186.0" style="-fx-background-color: #515151;" styleClass="edge-to-edge" />
                            </content>
                         </ScrollPane>
                      </children>

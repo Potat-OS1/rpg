@@ -51,11 +51,7 @@ public class LevelTools {
                     level.add(new ArrayList<>());
                     temp = line.split(", ");
                     for (String s : temp) {
-                        switch (s) {
-                            case ("1") -> level.get(a).add(new Room(1));
-                            case ("2") -> level.get(a).add(new Room(2));
-                            case ("3") -> level.get(a).add(new Room(3));
-                        }
+                        level.get(a).add(new Room(Integer.parseInt(s)));
                     }
                 }
                 else {
