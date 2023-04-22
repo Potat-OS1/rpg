@@ -44,9 +44,8 @@ public class RoomTools {
             }
             a++;
         }
-        Tile[][] roomArray = room.stream().map(u -> u.toArray(new Tile[0])).toArray(Tile[][]::new);
 
-        return roomArray;
+        return room.stream().map(u -> u.toArray(new Tile[0])).toArray(Tile[][]::new);
     }
 
     public static RoomObject[] readObjectFile (int num) {
