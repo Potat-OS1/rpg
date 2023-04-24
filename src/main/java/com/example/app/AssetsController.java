@@ -3,8 +3,8 @@ package com.example.app;
 import javafx.scene.image.Image;
 
 public class AssetsController {
-    public static int tileWidth = 64;
-    public static int tileHeight = 64;
+    public static int tileWidth = 32;
+    public static int tileHeight = 32;
 
     public static Image[] lights = {
             new Image(AssetsController.class.getResourceAsStream("/sprites/lights/smallleftflame.png"), tileWidth, tileHeight, false, false),
@@ -35,11 +35,14 @@ public class AssetsController {
     };
 
     public static Image[] floor = {
-            new Image(AssetsController.class.getResourceAsStream("/tiledata/floor/cobblestone.png"), tileWidth, tileHeight, false, false)
+            new Image(AssetsController.class.getResourceAsStream("/tiledata/floor/cobblestone.png"), tileWidth, tileHeight, false, false),
+            new Image(AssetsController.class.getResourceAsStream("/tiledata/floor/cobblestone 2.png"), tileWidth, tileHeight, false, false)
     };
 
     public static Image[] wall = {
-            new Image(AssetsController.class.getResourceAsStream("/tiledata/wall/archway wall.png"), tileWidth, tileHeight, false, false)
+            new Image(AssetsController.class.getResourceAsStream("/tiledata/wall/archway wall.png"), tileWidth, tileHeight, false, false),
+            new Image(AssetsController.class.getResourceAsStream("/tiledata/wall/brick 3.png"), tileWidth, tileHeight, false, false),
+            new Image(AssetsController.class.getResourceAsStream("/tiledata/wall/stone brick 1.png"), tileWidth, tileHeight, false, false)
     };
 
     public static Image[][] scenery = {

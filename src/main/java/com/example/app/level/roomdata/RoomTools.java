@@ -35,7 +35,10 @@ public class RoomTools {
                             case ("1") -> room.get(a).add(new Floor(Material.BLACKSTONE));
                             case ("2") -> room.get(a).add(new Floor(Material.CLOTH));
                             case ("100") -> room.get(a).add(new Floor(AssetsController.floor[0]));
+                            case ("101") -> room.get(a).add(new Floor(AssetsController.floor[1]));
                             case ("200") -> room.get(a).add(new Wall(AssetsController.wall[0]));
+                            case ("201") -> room.get(a).add(new Wall(AssetsController.wall[1]));
+                            case ("202") -> room.get(a).add(new Wall(AssetsController.wall[2]));
                             case ("300") -> room.get(a).add(new Floor(AssetsController.cloth[0]));
                         }
                     }
