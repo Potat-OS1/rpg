@@ -11,11 +11,13 @@ import java.util.Objects;
 
 public class LevelTools {
     public static Image joinImages(Room[][] rooms) {
-        int width = 1000;
-        int height = 1000;
+        int width = 10000;
+        int height = 10000;
         int currentX;
         int currentY = 0;
         int bigHeight;
+
+        // ADD A HANDLER THAT MAKES THE WIDTH AND HEIGHT OF THIS THE LONGEST ROW OR TILE * TILEWIDTH.
 
         WritableImage wi = new WritableImage(width, height);
         for (Room[] room : rooms) {

@@ -10,6 +10,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class LevelEditorController {
     private static Image brushImage;
@@ -62,6 +63,7 @@ public class LevelEditorController {
                         case (2) -> writeTo(b, pw, 1);
                         case (1) -> writeTo(b, pw, 0);
                         case (0) -> writeTo(b, pw, 2);
+                        default -> writeTo(b, pw, LevelScene.imageList[b][a]);
                     }
                 }
                 pw.println();
@@ -85,35 +87,51 @@ public class LevelEditorController {
     public void populateTileVbox () {
         // calculate the number of rows needed:
         int b = (int) Math.ceil(AssetsController.material.length / 4.0);
-        for (int c = 0; c < b; c++) {
-            tileVbox.getChildren().add(makeNewRow(c, "material"));
+        for (int a = 0; a < b; a++) {
+            tileVbox.getChildren().add(makeNewRow(a, "material"));
+        }
+
+        b = (int) Math.ceil(AssetsController.wall.length / 4.0);
+        for (int a = 0; a < b; a++) {
+            tileVbox.getChildren().add(makeNewRow(a, "wall"));
+        }
+
+        b = (int) Math.ceil(AssetsController.cloth.length / 4.0);
+        for (int a = 0; a < b; a++) {
+            tileVbox.getChildren().add(makeNewRow(a, "cloth"));
+        }
+
+        b = (int) Math.ceil(AssetsController.floor.length / 4.0);
+        for (int a = 0; a < b; a++) {
+            tileVbox.getChildren().add(makeNewRow(a, "floor"));
         }
     }
 
     public void populateObjectVbox () {
-        int b = (int) Math.ceil(AssetsController.containers.length / 4.0);
-        for (int c = 0; c < b; c++) {
-            objectVbox.getChildren().add(makeNewRow(c, "container"));
-        }
-        b = (int) Math.ceil(AssetsController.lights.length / 4.0);
-        for (int c = 0; c < b; c++) {
-            objectVbox.getChildren().add(makeNewRow(c, "light"));
-        }
+//        int b = (int) Math.ceil(AssetsController.containers.length / 4.0);
+//        for (int c = 0; c < b; c++) {
+//            objectVbox.getChildren().add(makeNewRow(c, "container"));
+//        }
+//        b = (int) Math.ceil(AssetsController.lights.length / 4.0);
+//        for (int c = 0; c < b; c++) {
+//            objectVbox.getChildren().add(makeNewRow(c, "light"));
+//        }
     }
 
     public void populateEntityVbox() {
 
     }
 
-    public HBox makeNewRow (int c, String field) {
+    public HBox makeNewRow (int c, String type) {
         HBox hbox = new HBox();
         hbox.getChildren().add(createRegion());
         for (int d = 0; d < 4; d++) {
             try {
-                switch (field) {
-                    case ("material") -> hbox.getChildren().add(newTile(AssetsController.material[(c*4) + d], (c*4 + d)));
-                    case ("container") -> hbox.getChildren().add(newTile(AssetsController.containers[(c*4) + d], (c*4 + d)));
-                    case ("light") -> hbox.getChildren().add(newTile(AssetsController.lights[(c*4) + d], (c*4 + d)));
+                switch (type) {
+                    case ("cloth") -> hbox.getChildren().add(newTile(AssetsController.cloth[(c * 4) + d], (c * 4) + d + 300));
+                    case ("floor") -> hbox.getChildren().add(newTile(AssetsController.floor[(c * 4) + d], (c * 4) + d + 100));
+                    case ("material") -> hbox.getChildren().add(newTile(AssetsController.material[(c * 4) + d], (c * 4) + d));
+                    case ("wall") -> hbox.getChildren().add(newTile(AssetsController.wall[(c * 4) + d], (c * 4) + d + 200));
                 }
                 hbox.getChildren().add(createRegion());
             }
@@ -135,6 +153,7 @@ public class LevelEditorController {
         r.setOnMouseClicked(Event->{
             brushImage = im;
             brushIndex = a;
+            System.out.println(brushIndex);
         });
 
         Label l = new Label(String.valueOf(a));

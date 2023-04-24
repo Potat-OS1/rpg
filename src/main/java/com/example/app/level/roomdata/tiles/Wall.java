@@ -6,4 +6,7 @@ public class Wall extends Tile{
     Wall (Material mat) {
         super(mat.getMat());
     }
+    public Wall(Image im) {
+        super(im);
+    }
 }

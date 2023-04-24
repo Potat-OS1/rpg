@@ -34,6 +34,7 @@ public class LevelScene {
     }
 
     public static void resizeGridPane(int num) {
+        //resizes the grid pane by storing the values, emptying the grid, then replacing the constraints, then repopulating.
         storePaneValues();
         gp.getChildren().clear();
         gp.setMinSize(350, 350);
@@ -46,6 +47,7 @@ public class LevelScene {
     }
 
     private static void storePaneValues() {
+        //this stores the temporary values of the grid.
         temp = new StackPane[gp.getRowCount()][gp.getColumnCount()];
         tempImageList = new int[gp.getRowCount()][gp.getColumnCount()];
         for (int a = 0; a < gp.getColumnCount(); a++) {
@@ -56,6 +58,7 @@ public class LevelScene {
     }
 
     private static void storeImageValues () {
+        //this stores the values of the grid in a way to save to file.
         tempImageList = new int[gp.getRowCount()][gp.getColumnCount()];
         for (int a = 0; a < gp.getColumnCount(); a++) {
             for (int b = 0; b < gp.getRowCount(); b++) {
@@ -96,6 +99,8 @@ public class LevelScene {
     }
 
     private static void populateGridPaneWithValues () {
+        //when the grid grows, it needs to add cells to accomodate. the grid is also empty as this point.
+        //so it loops through, and if it fails to make something it makes a default tile.
         for (int d = 0; d < gp.getRowCount(); d++) {
             for (int e = 0; e < gp.getColumnCount(); e++) {
                 StackPane p;
@@ -122,6 +127,8 @@ public class LevelScene {
     }
 
     private static void populateGridPane () {
+        // for initial population of the grid pane, its only called once so i think i could probably get away with using the other method and just tweaking it and deleting this.
+        // that'll be for later
         for (int d = 0; d < gp.getRowCount(); d++) {
             for (int e = 0; e < gp.getColumnCount(); e++) {
                 Rectangle r = new Rectangle(gp.getMinWidth()/gp.getRowCount(), gp.getMinWidth()/gp.getColumnCount());
@@ -138,6 +145,7 @@ public class LevelScene {
     }
 
     public static void setConstraints (int scale) {
+        //enforces the grid size.
         double percentage = gp.getMinWidth() / scale;
         for (int a = 0; a < scale; a++) {
             RowConstraints rowConstraint = new RowConstraints();
@@ -155,6 +163,7 @@ public class LevelScene {
 
 
     public static void scaleGrid (int change) {
+        // makes the images in the grid the size they should be.
         gp.setMinSize(gp.getMinWidth() + change, gp.getMinHeight() + change);
         for (Rectangle i : iv) {
             i.setHeight(gp.getMinHeight() / gp.getColumnCount());

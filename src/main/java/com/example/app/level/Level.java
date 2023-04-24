@@ -1,5 +1,6 @@
 package com.example.app.level;
 
+import com.example.app.AssetsController;
 import com.example.app.Controller;
 import com.example.app.level.roomdata.Room;
 import com.example.app.level.roomdata.objecttypes.RoomObject;
@@ -30,8 +31,8 @@ public class Level {
                 for (RoomObject obj : layout[a][b].getObjects()) {
                     ImageView iv = new ImageView(obj.getSprite());
                     Controller.objectLayer.getChildren().add(iv);
-                    iv.setLayoutX(currentX + obj.getX());
-                    iv.setLayoutY(currentY + obj.getY());
+                    iv.setLayoutX(currentX + (obj.getX() * AssetsController.tileWidth));
+                    iv.setLayoutY(currentY + (obj.getY() * AssetsController.tileHeight));
                 }
                 if (bigHeight < h) {
                     bigHeight = h;

@@ -1,2 +1,2 @@
-Light, 20, 20
-Barrel, 20, 40
+Light, 1, 1
+Barrel, 1, 2

@@ -1,5 +1,6 @@
 package com.example.app.level.roomdata;
 
+import com.example.app.AssetsController;
 import com.example.app.level.roomdata.objecttypes.RoomObject;
 import com.example.app.level.roomdata.objecttypes.container.Barrel;
 import com.example.app.level.roomdata.objecttypes.container.Crate;
@@ -7,6 +8,7 @@ import com.example.app.level.roomdata.objecttypes.light.Generic;
 import com.example.app.level.roomdata.tiles.Floor;
 import com.example.app.level.roomdata.tiles.Material;
 import com.example.app.level.roomdata.tiles.Tile;
+import com.example.app.level.roomdata.tiles.Wall;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
@@ -32,6 +34,9 @@ public class RoomTools {
                             case ("0") -> room.get(a).add(new Floor(Material.GRAYSTONE));
                             case ("1") -> room.get(a).add(new Floor(Material.BLACKSTONE));
                             case ("2") -> room.get(a).add(new Floor(Material.CLOTH));
+                            case ("100") -> room.get(a).add(new Floor(AssetsController.floor[0]));
+                            case ("200") -> room.get(a).add(new Wall(AssetsController.wall[0]));
+                            case ("300") -> room.get(a).add(new Floor(AssetsController.cloth[0]));
                         }
                     }
                 }
@@ -87,7 +92,7 @@ public class RoomTools {
                 int h = (int) tile[a][b].getMaterial().getHeight();
                 for (int c = 0; c < w; c++) {
                     for (int d = 0; d < h; d++) {
-                        wi.getPixelWriter().setArgb(c + (a*tileWidth), d + (b * tileHeight), tile[a][b].getMaterial().getPixelReader().getArgb(c, d));
+                        wi.getPixelWriter().setArgb(c + (a*tileWidth), d + (b * tileHeight), tile[a][b].getMaterial().getPixelReader().getArgb(d, c));
                     }
                 }
             }

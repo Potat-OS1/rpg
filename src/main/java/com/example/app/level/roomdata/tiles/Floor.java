@@ -6,4 +6,8 @@ public class Floor extends Tile{
     public Floor(Material mat) {
         super(mat.getMat());
     }
+
+    public Floor(Image im) {
+        super(im);
+    }
 }
